@@ -26,7 +26,7 @@ resource "spacelift_stack" "github_automation" {
 }
 
 resource "spacelift_environment_variable" "github_owner" {
-  stack_id   = spacelift_stack.github_automation.id
+  context_id = "githubhttpscredentials"
   name       = "GITHUB_OWNER"
   value      = "hieu-ldt"
   write_only = false
