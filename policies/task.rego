@@ -1,20 +1,11 @@
 package spacelift
 
-# This task policy only allows you to exectute a few selected commands.
-#
-# You can read more about task policies here:
-#
-# https://docs.spacelift.io/concepts/policy/task-run-policy
+command := input.request.command
 
-allowlist := {
-    "ls",
-    "terraform taint random_password.secret",
-}
+deny[sprintf("command not allowed (%s)", [command])] { not allowed }
 
-allowed { allowlist[_] == input.request.command }
-deny["Only selected commands are allowed"] { not allowed }
-
-# Learn more about sampling policy evaluations here:
-#
-# https://docs.spacelift.io/concepts/policy#sampling-policy-inputs
-sample { true }
+allowed { input.session.admin }
+allowed { re_match("^terraform\\s(un)?taint\\s[\\w\\-\\.]*$", command) }
+allowed { re_match("^terraform\\simport\\s[\\w\\-\\.]*$", command) }
+allowed { re_match("^terraform\\sapply", command) }
+allowed { re_match("^terraform\\sdestroy", command) }
