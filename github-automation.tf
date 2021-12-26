@@ -21,6 +21,6 @@ resource "spacelift_stack" "github_automation" {
     "tflint --init",
     "tflint --disable-rule=terraform_module_pinned_source",
     "tfsec .",
-    "checkov -d . --framework=terraform --quiet"
+    "checkov -d . --framework=terraform --quiet --skip-check CKV_GIT_1"
   ]
 }
