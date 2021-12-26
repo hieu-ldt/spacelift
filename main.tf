@@ -1,3 +1,5 @@
+provider "spacelift" {}
+
 terraform {
   required_providers {
     spacelift = {
