@@ -24,3 +24,10 @@ resource "spacelift_stack" "github_automation" {
     "checkov -d . --framework=terraform --quiet --skip-check CKV_GIT_1"
   ]
 }
+
+resource "spacelift_environment_variable" "github_owner" {
+  stack_id   = spacelift_stack.github_automation.id
+  name       = "TF_VAR_rowner"
+  value      = "hieu-ldt"
+  write_only = false
+}
