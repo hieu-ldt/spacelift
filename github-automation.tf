@@ -26,8 +26,26 @@ resource "spacelift_stack" "github_automation" {
 }
 
 resource "spacelift_environment_variable" "github_owner" {
-  context_id = "githubhttpscredentials"
+  stack_id   = spacelift_stack.github_automation.id
   name       = "GITHUB_OWNER"
   value      = "hieu-ldt"
   write_only = false
+}
+
+resource "spacelift_context" "github_pat" {
+  description = "PAT for Github Automation"
+  name        = "PAT for Github Automation"
+}
+
+resource "spacelift_environment_variable" "github_pat" {
+  context_id = spacelift_context.github_pat.id
+  name       = "PAT"
+  value      = "thisisjustadummyvalue"
+  write_only = true
+}
+
+resource "spacelift_context_attachment" "attachment" {
+  context_id = spacelift_context.github_pat.id
+  stack_id   = spacelift_stack.github_automation.id
+  priority   = 0
 }
