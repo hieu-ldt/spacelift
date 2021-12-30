@@ -2,10 +2,10 @@ resource "spacelift_stack" "github_automation" {
   administrative = false
   autodeploy     = false
 
-  name           = "github-automation"
-  description    = ""
-  manage_state   = false
-#   worker_pool_id = "01FQ0MDWV3B44RGJ7QBV0K59HB"
+  name         = "github-automation"
+  description  = ""
+  manage_state = false
+  #   worker_pool_id = "01FQ0MDWV3B44RGJ7QBV0K59HB"
 
   repository = "github-automation-2"
   branch     = "main"
