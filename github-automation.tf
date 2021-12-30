@@ -32,19 +32,19 @@ resource "spacelift_environment_variable" "github_owner" {
   write_only = false
 }
 
-resource "spacelift_context" "github_token" {
-  name        = "Token for Github Automation"
-}
+# resource "spacelift_context" "github_token" {
+#   name        = "Token for Github Automation"
+# }
 
-resource "spacelift_environment_variable" "github_token" {
-  context_id = spacelift_context.github_token.id
-  name       = "GITHUB_TOKEN"
-  value      = "thisisjustadummyvalue"
-  write_only = true
-}
+# resource "spacelift_environment_variable" "github_token" {
+#   context_id = spacelift_context.github_token.id
+#   name       = "GITHUB_TOKEN"
+#   value      = "thisisjustadummyvalue"
+#   write_only = true
+# }
 
-resource "spacelift_context_attachment" "attachment" {
-  context_id = spacelift_context.github_token.id
-  stack_id   = spacelift_stack.github_automation.id
-  priority   = 0
-}
+# resource "spacelift_context_attachment" "attachment" {
+#   context_id = spacelift_context.github_token.id
+#   stack_id   = spacelift_stack.github_automation.id
+#   priority   = 0
+# }
